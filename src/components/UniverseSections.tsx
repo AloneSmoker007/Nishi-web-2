@@ -4,6 +4,17 @@ import { Car, Crown, Disc3, Heart, Music, Pause, Play, Sparkles, Star } from 'lu
 import { FAVORITE_BTS_SONGS, OT7_MEMBERS, PRESERVED_ARMY_QUOTE, TRACKS, type Track } from '../data/universe';
 import { PurpleFireworks } from './PurpleFireworks';
 
+// Official BIGHIT MUSIC member portraits (real photos, not AI-generated likenesses).
+const MEMBER_PHOTOS: Record<string, string> = {
+  rm: 'https://bighitsmusic.com/assets/images/bts/members/rm.jpg',
+  jin: 'https://bighitsmusic.com/assets/images/bts/members/jin.jpg',
+  suga: 'https://bighitsmusic.com/assets/images/bts/members/suga.jpg',
+  jhope: 'https://bighitsmusic.com/assets/images/bts/members/j-hope.jpg',
+  jimin: 'https://bighitsmusic.com/assets/images/bts/members/jimin.jpg',
+  v: 'https://bighitsmusic.com/assets/images/bts/members/v.jpg',
+  jk: 'https://bighitsmusic.com/assets/images/bts/members/jungkook.jpg',
+};
+
 interface UniverseSectionsProps {
   currentTrack: Track;
   isPlaying: boolean;
@@ -197,6 +208,36 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
             <p className="mt-3 text-sm leading-relaxed text-purple-100/90">{selectedMember.note}</p>
           </div>
         </div>
+
+        <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {OT7_MEMBERS.map((member, index) => (
+            <motion.article
+              key={member.id}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: index * 0.045 }}
+              whileHover={{ y: -5 }}
+              className="ot7-photo-card group overflow-hidden rounded-2xl border border-fuchsia-200/25 bg-[#170736]/90 shadow-[0_14px_38px_rgba(6,2,18,0.55)]"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#24104a]">
+                <img
+                  src={MEMBER_PHOTOS[member.id]}
+                  alt={`Official portrait of BTS member ${member.stage}`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#100322]/95 via-transparent to-fuchsia-300/5" />
+                <span className="absolute bottom-3 left-3 rounded-full border border-fuchsia-100/35 bg-[#16052e]/75 px-3 py-1 text-xs font-bold text-white backdrop-blur-md">{member.stage}</span>
+              </div>
+              <div className="p-3 text-center">
+                <p className="text-xs font-semibold text-purple-100">{member.fullName}</p>
+                <p className="mt-1 text-[10px] text-fuchsia-200/75">{member.role}</p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </section>
 
       {/* 4. V's Violet Corner */}
@@ -222,7 +263,7 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
           </div>
           <div className="overflow-hidden rounded-2xl border border-purple-300/25">
             <img
-              src="/assets/ai/v-violet-corner.jpg"
+              src={MEMBER_PHOTOS.v}
               alt="Royal purple galaxy prince portrait for V's Violet Corner"
               className="h-72 w-full object-cover"
               loading="lazy"
