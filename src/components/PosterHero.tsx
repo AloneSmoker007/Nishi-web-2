@@ -79,6 +79,8 @@ export function PosterHero({
         <img
           src="/assets/ai/hero-castle.jpg"
           alt="Moonlit purple castle above a waterfall with roses and lanterns"
+          fetchPriority="high"
+          decoding="async"
           className={`h-full w-full object-cover object-[center_26%] transition-all duration-700 ${
             glowMode === 'vivid' ? 'brightness-95 saturate-125 contrast-105' : 'brightness-75 saturate-110'
           }`}
