@@ -162,3 +162,136 @@
     animation: none;
   }
 }
+
+
+/* Mobile-only experience polish. Desktop/tablet layout remains unchanged. */
+@media (max-width: 640px) {
+  html { scroll-padding-top: 5.5rem; }
+  body { -webkit-text-size-adjust: 100%; }
+
+  /* Keep the welcome envelope comfortably inside short phone screens. */
+  #envelope-intro {
+    min-height: 100svh;
+    padding-top: max(1.25rem, env(safe-area-inset-top));
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  }
+  #envelope-intro > div.relative.z-10.mt-8 {
+    width: min(100%, 390px);
+    margin-top: clamp(1rem, 4vh, 2rem);
+  }
+  #envelope-intro svg {
+    max-height: min(34svh, 245px);
+  }
+  #envelope-intro button,
+  #envelope-intro a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  #envelope-intro button span:last-child {
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* More breathing room and reliable touch targets in the mobile header. */
+  #home header {
+    padding-top: max(.5rem, env(safe-area-inset-top));
+  }
+  #home header button,
+  #home header a {
+    min-height: 40px;
+  }
+  #home header nav[aria-label="Mobile navigation"] a {
+    min-height: 44px;
+    padding: .7rem .8rem;
+    font-size: .78rem;
+  }
+
+  /* Hide the desktop-style shortcut column; the dedicated mobile menu stays available. */
+  #home nav[aria-label="Quick universe shortcuts"] {
+    display: none;
+  }
+
+  /* Stack hero content with readable type and comfortable spacing. */
+  #home h1 {
+    font-size: clamp(2.35rem, 11vw, 3.25rem);
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  #home .relative.z-10.mx-auto.grid {
+    gap: 1.35rem;
+    padding: 1.25rem 1rem 1.5rem;
+  }
+  #home aside[aria-label="Now Playing"] {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  #home aside[aria-label="Now Playing"] button {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  /* Two compact portal tiles use phone width more efficiently. */
+  #realms > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .7rem;
+  }
+  #realms a {
+    height: 11.5rem;
+    border-radius: 1.1rem;
+  }
+  #realms a h3 {
+    font-size: .82rem;
+    line-height: 1.2;
+  }
+  #realms a p {
+    font-size: .65rem;
+    line-height: 1.35;
+  }
+
+  /* Keep long sections and portrait cards from touching phone edges. */
+  #promise,
+  #realms,
+  #ot7,
+  #taehyung,
+  #busan,
+  #music,
+  #memories,
+  #open-when,
+  #cake,
+  #starmap,
+  #quest,
+  #letter {
+    scroll-margin-top: 1rem;
+  }
+  #ot7 .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .65rem;
+  }
+  #ot7 .ot7-photo-card {
+    min-width: 0;
+  }
+  #ot7 .ot7-photo-card p {
+    overflow-wrap: anywhere;
+  }
+
+  /* Prevent tiny controls and accidental horizontal overflow on narrow devices. */
+  button, a { touch-action: manipulation; }
+  img, svg { max-width: 100%; }
+}
+
+@media (max-width: 380px) {
+  #envelope-intro h1 { font-size: 2.15rem; }
+  #realms > div { gap: .5rem; }
+  #realms a { height: 10.25rem; }
+  #home .relative.z-10.mx-auto.grid { padding-inline: .75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @media (max-width: 640px) {
+    #realms a,
+    #ot7 .ot7-photo-card,
+    #envelope-intro * {
+      scroll-behavior: auto !important;
+    }
+  }
+}
