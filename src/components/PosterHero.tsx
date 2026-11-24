@@ -419,10 +419,27 @@ export function PosterHero({
               aria-valuemin={0}
               aria-valuemax={100}
               aria-valuenow={Math.round(pct)}
+              aria-valuetext={`${fmt(currentTime)} of ${fmt(duration)}`}
               tabIndex={0}
               onClick={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 onSeek(Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width)));
+              }}
+              onKeyDown={(e) => {
+                const step = e.shiftKey ? 10 : 5;
+                if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+                  e.preventDefault();
+                  onSeek(Math.min(100, pct + step) / 100);
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+                  e.preventDefault();
+                  onSeek(Math.max(0, pct - step) / 100);
+                } else if (e.key === 'Home') {
+                  e.preventDefault();
+                  onSeek(0);
+                } else if (e.key === 'End') {
+                  e.preventDefault();
+                  onSeek(1);
+                }
               }}
               className="h-1.5 w-full cursor-pointer overflow-hidden rounded-full bg-purple-950/90"
             >
