@@ -6,17 +6,20 @@ function createStarTexture() {
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
-  const ctx = canvas.getContext('2d')!;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return new THREE.Texture();
+
   const grad = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
   grad.addColorStop(0, 'rgba(255,255,255,1)');
-  grad.addColorStop(0.22, 'rgba(245,208,254,0.95)');
-  grad.addColorStop(0.5, 'rgba(192,132,252,0.45)');
+  grad.addColorStop(0.2, 'rgba(250,232,255,0.95)');
+  grad.addColorStop(0.48, 'rgba(216,180,254,0.48)');
   grad.addColorStop(1, 'rgba(168,85,247,0)');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, size, size);
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.needsUpdate = true;
-  return tex;
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
 }
 
 export function GalaxyBackground() {
@@ -28,39 +31,43 @@ export function GalaxyBackground() {
 
     let renderer: THREE.WebGLRenderer | null = null;
     try {
-      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
+      renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: false,
+        powerPreference: 'low-power',
+        failIfMajorPerformanceCaveat: true,
+      });
     } catch {
       return;
     }
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.z = 5;
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.domElement.className = 'nishi-star-canvas';
+    renderer.domElement.setAttribute('aria-hidden', 'true');
     el.appendChild(renderer.domElement);
 
     const starTexture = createStarTexture();
-    const count = 1100;
+    const count = window.innerWidth < 640 ? 420 : 760;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    const palette = [
-      new THREE.Color('#ffffff'),
-      new THREE.Color('#f5d0fe'),
-      new THREE.Color('#e879f9'),
-      new THREE.Color('#c084fc'),
-      new THREE.Color('#fde68a'),
-    ];
+    const palette = ['#ffffff', '#f5d0fe', '#e9d5ff', '#c084fc', '#fbcfe8'].map(
+      (color) => new THREE.Color(color)
+    );
 
     for (let i = 0; i < count; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 20;
       positions[i * 3 + 1] = (Math.random() - 0.5) * 16;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 16;
-      const c = palette[i % palette.length];
-      colors[i * 3] = c.r;
-      colors[i * 3 + 1] = c.g;
-      colors[i * 3 + 2] = c.b;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 14;
+      const color = palette[Math.floor(Math.random() * palette.length)];
+      colors[i * 3] = color.r;
+      colors[i * 3 + 1] = color.g;
+      colors[i * 3 + 2] = color.b;
     }
 
     const geometry = new THREE.BufferGeometry();
@@ -68,13 +75,14 @@ export function GalaxyBackground() {
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 0.18,
+      size: window.innerWidth < 640 ? 0.14 : 0.17,
       map: starTexture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.92,
+      opacity: 0.82,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
+      sizeAttenuation: true,
     });
 
     const stars = new THREE.Points(geometry, material);
@@ -82,47 +90,71 @@ export function GalaxyBackground() {
 
     let targetX = 0;
     let targetY = 0;
-    const onPointerMove = (e: PointerEvent) => {
-      targetX = (e.clientX / window.innerWidth - 0.5) * 0.55;
-      targetY = (e.clientY / window.innerHeight - 0.5) * 0.42;
+    let frame = 0;
+    let elapsed = 0;
+    let disposed = false;
+
+    const onPointerMove = (event: PointerEvent) => {
+      targetX = (event.clientX / window.innerWidth - 0.5) * 0.28;
+      targetY = (event.clientY / window.innerHeight - 0.5) * 0.2;
     };
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
+
+    const render = () => {
+      if (disposed || document.hidden) return;
+      if (!reducedMotion) {
+        elapsed += 0.012;
+        stars.rotation.y += 0.00028;
+        stars.rotation.x += 0.0001;
+        material.opacity = 0.72 + Math.sin(elapsed) * 0.1;
+        camera.position.x += (targetX - camera.position.x) * 0.025;
+        camera.position.y += (-targetY - camera.position.y) * 0.025;
+      }
+      renderer?.render(scene, camera);
+      if (!reducedMotion) frame = requestAnimationFrame(render);
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(frame);
+      } else {
+        render();
+      }
+    };
 
     const onResize = () => {
       if (!renderer) return;
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
-    window.addEventListener('resize', onResize);
 
-    let frame = 0;
-    let t = 0;
-    const animate = () => {
-      frame = requestAnimationFrame(animate);
-      t += 0.015;
-      stars.rotation.y += 0.0006;
-      stars.rotation.x += 0.00018;
-      material.opacity = 0.8 + Math.sin(t) * 0.14;
-      camera.position.x += (targetX - camera.position.x) * 0.035;
-      camera.position.y += (-targetY - camera.position.y) * 0.035;
-      renderer?.render(scene, camera);
-    };
-    animate();
+    if (!reducedMotion) window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    render();
 
     return () => {
+      disposed = true;
       cancelAnimationFrame(frame);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       geometry.dispose();
       material.dispose();
       starTexture.dispose();
       renderer?.dispose();
-      if (renderer?.domElement.parentNode === el) {
-        el.removeChild(renderer.domElement);
-      }
+      renderer?.domElement.remove();
     };
   }, []);
 
-  return <div ref={mountRef} className="pointer-events-none fixed inset-0 z-0 opacity-90" aria-hidden="true" />;
+  return (
+    <div ref={mountRef} className="nishi-galaxy-background" aria-hidden="true">
+      <div className="nishi-aurora nishi-aurora-one" />
+      <div className="nishi-aurora nishi-aurora-two" />
+      <div className="nishi-moon-halo">
+        <div className="nishi-moon" />
+      </div>
+    </div>
+  );
 }
