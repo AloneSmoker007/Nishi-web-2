@@ -173,3 +173,26 @@
   #ot7 .ot7-photo-card img { object-position: center 18%; }
   #ot7 .ot7-photo-card { border-radius: 1.1rem; }
 }
+
+/* Purple shader-inspired shimmer layers: lightweight CSS, no extra GPU workload */
+.nishi-galaxy-background::before,
+.nishi-galaxy-background::after {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.nishi-galaxy-background::before {
+  background: conic-gradient(from 160deg at 52% 48%, transparent 0deg, rgba(147,51,234,.08) 50deg, rgba(232,121,249,.16) 105deg, transparent 180deg, rgba(167,139,250,.12) 270deg, transparent 360deg);
+  filter: blur(70px);
+  animation: nishiShaderSweep 32s ease-in-out infinite alternate;
+}
+.nishi-galaxy-background::after {
+  background: radial-gradient(ellipse at 22% 28%, rgba(255,215,255,.12), transparent 18%), radial-gradient(ellipse at 74% 32%, rgba(192,132,252,.11), transparent 22%), radial-gradient(ellipse at 48% 80%, rgba(216,180,254,.1), transparent 24%);
+  filter: blur(35px);
+  animation: nishiShaderBreath 8s ease-in-out infinite;
+}
+@keyframes nishiShaderSweep { from { transform: rotate(-12deg) scale(.95); } to { transform: rotate(18deg) scale(1.12); } }
+@keyframes nishiShaderBreath { 0%,100% { opacity:.45; transform:scale(.96); } 50% { opacity:1; transform:scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { .nishi-galaxy-background::before, .nishi-galaxy-background::after { animation:none; } }
