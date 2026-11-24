@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alonesmoker007.github.io/Nishi-Purple-Universe/sitemap.xml

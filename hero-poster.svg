@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="hp-title hp-desc">
+<title id="hp-title">Moonlit purple castle</title>
+<desc id="hp-desc">A glowing full moon behind a fantasy castle, violet rose gardens, a stone bridge over a waterfall and drifting butterflies.</desc>
+<defs>
+  <linearGradient id="hpSky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#1a0a33"/>
+    <stop offset=".38" stop-color="#3a1466"/>
+    <stop offset=".72" stop-color="#240d44"/>
+    <stop offset="1" stop-color="#0a0318"/>
+  </linearGradient>
+  <radialGradient id="hpMoonHalo" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#f0d6ff" stop-opacity=".55"/>
+    <stop offset=".42" stop-color="#b978e8" stop-opacity=".24"/>
+    <stop offset="1" stop-color="#7b2cbf" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="hpMoon" cx="40%" cy="34%" r="70%">
+    <stop offset="0" stop-color="#fffafd"/>
+    <stop offset=".5" stop-color="#f1dbff"/>
+    <stop offset=".82" stop-color="#d3aaf2"/>
+    <stop offset="1" stop-color="#a874d6"/>
+  </radialGradient>
+  <linearGradient id="hpKeep" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#2a1046"/>
+    <stop offset=".62" stop-color="#180830"/>
+    <stop offset="1" stop-color="#0d0419"/>
+  </linearGradient>
+  <linearGradient id="hpRim" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#e6b8ff"/>
+    <stop offset=".55" stop-color="#a86bdd"/>
+    <stop offset="1" stop-color="#6b3a9e"/>
+  </linearGradient>
+  <linearGradient id="hpGround" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#1c0935"/>
+    <stop offset=".55" stop-color="#100521"/>
+    <stop offset="1" stop-color="#05010c"/>
+  </linearGradient>
+  <linearGradient id="hpWater" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#e3c6ff" stop-opacity=".8"/>
+    <stop offset=".55" stop-color="#a06ae0" stop-opacity=".45"/>
+    <stop offset="1" stop-color="#3d1766" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="hpRose" cx="38%" cy="34%" r="64%">
+    <stop offset="0" stop-color="#ff9ad5"/>
+    <stop offset=".55" stop-color="#bb4a92"/>
+    <stop offset="1" stop-color="#4a1239"/>
+  </radialGradient>
+  <filter id="hpGlow" x="-70%" y="-70%" width="240%" height="240%">
+    <feGaussianBlur stdDeviation="9" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="hpSoft" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="26"/>
+  </filter>
+  <filter id="hpMist" x="-40%" y="-60%" width="180%" height="220%">
+    <feGaussianBlur stdDeviation="46"/>
+  </filter>
+</defs>
+
+<rect width="1600" height="900" fill="url(#hpSky)"/>
+
+<!-- soft nebula -->
+<g filter="url(#hpMist)" opacity=".5">
+  <ellipse cx="330" cy="180" rx="360" ry="150" fill="#8b4bd0" opacity=".5"/>
+  <ellipse cx="1300" cy="300" rx="300" ry="130" fill="#a05ae0" opacity=".35"/>
+  <ellipse cx="860" cy="560" rx="620" ry="120" fill="#5b2597" opacity=".45"/>
+</g>
+
+<!-- stars -->
+<g fill="#ffffff">
+  <circle cx="90" cy="80" r="2" opacity=".9"/><circle cx="215" cy="152" r="1.3" opacity=".65"/>
+  <circle cx="335" cy="60" r="1.7" opacity=".8"/><circle cx="452" cy="132" r="1.1" opacity=".55"/>
+  <circle cx="120" cy="272" r="1.4" opacity=".6"/><circle cx="256" cy="332" r="1.1" opacity=".5"/>
+  <circle cx="1518" cy="92" r="1.9" opacity=".85"/><circle cx="1402" cy="182" r="1.3" opacity=".65"/>
+  <circle cx="1272" cy="66" r="1.6" opacity=".7"/><circle cx="1186" cy="256" r="1.2" opacity=".55"/>
+  <circle cx="1466" cy="332" r="1.4" opacity=".55"/><circle cx="602" cy="46" r="1.5" opacity=".7"/>
+  <circle cx="1006" cy="58" r="1.4" opacity=".6"/><circle cx="60" cy="422" r="1.2" opacity=".4"/>
+  <circle cx="1544" cy="472" r="1.3" opacity=".4"/><circle cx="520" cy="230" r="1.2" opacity=".5"/>
+  <circle cx="1120" cy="120" r="1.3" opacity=".5"/>
+</g>
+
+<!-- moon, high and right of the headline -->
+<circle cx="1090" cy="250" r="330" fill="url(#hpMoonHalo)"/>
+<circle cx="1090" cy="250" r="132" fill="url(#hpMoon)"/>
+<g fill="#b387d8" opacity=".3">
+  <circle cx="1052" cy="214" r="19"/><circle cx="1128" cy="262" r="13"/>
+  <circle cx="1072" cy="296" r="10"/><circle cx="1136" cy="206" r="8"/>
+</g>
+
+<!-- distant mountains -->
+<g fill="#1b0b30">
+  <path d="M0 610 Q140 500 280 578 T560 566 T840 596 T1120 558 T1380 586 T1600 560 V900 H0Z"/>
+</g>
+<g fill="#25103f">
+  <path d="M0 668 Q170 596 340 652 T680 648 T1020 664 T1360 640 T1600 668 V900 H0Z"/>
+</g>
+
+<!-- castle: dark silhouette with rim light -->
+<g>
+  <g fill="url(#hpKeep)" stroke="url(#hpRim)" stroke-opacity=".34" stroke-width="2">
+    <!-- left tower -->
+    <path d="M596 660V512h-9V470h16v-26h18v26h16v42h-9v148Z"/>
+    <path d="M614 470l30-74 30 74Z" fill="#160730"/>
+    <!-- right tower -->
+    <path d="M1112 660V512h-9V470h16v-26h18v26h16v42h-9v148Z"/>
+    <path d="M1130 470l30-74 30 74Z" fill="#160730"/>
+    <!-- main keep -->
+    <path d="M700 660V420h-12v-40h20v-28h20v28h20v40h-12v40h48v-64h-12v-42h20v-30h24v30h20v42h-12v64h56v-88h-14v-46h22v-32h26v32h22v46h-14v88h52v-52h-12v-40h20v-26h20v26h20v40h-12v52h46v-70h-11v-38h19v-28h19v28h19v38h-11v70h40V660Z"/>
+    <!-- corner turrets -->
+    <path d="M700 436l24-60 24 60Z" fill="#160730" stroke="none"/>
+    <path d="M864 328l26-66 26 66Z" fill="#160730" stroke="none"/>
+    <path d="M1064 392l22-56 22 56Z" fill="#160730" stroke="none"/>
+  </g>
+
+  <!-- lit windows -->
+  <g fill="#ffd9f6" opacity=".8" filter="url(#hpGlow)">
+    <rect x="732" y="466" width="10" height="26" rx="5"/>
+    <rect x="762" y="440" width="9" height="22" rx="4.5"/>
+    <rect x="806" y="498" width="11" height="30" rx="5.5"/>
+    <rect x="836" y="452" width="9" height="24" rx="4.5"/>
+    <rect x="884" y="374" width="10" height="28" rx="5"/>
+    <rect x="924" y="430" width="9" height="24" rx="4.5"/>
+    <rect x="966" y="498" width="11" height="30" rx="5.5"/>
+    <rect x="1012" y="454" width="9" height="24" rx="4.5"/>
+    <rect x="1052" y="404" width="10" height="26" rx="5"/>
+    <rect x="620" y="548" width="9" height="24" rx="4.5"/>
+    <rect x="1136" y="548" width="9" height="24" rx="4.5"/>
+  </g>
+
+  <!-- gate -->
+  <path d="M846 660v-56a28 28 0 0 1 56 0v56Z" fill="#ffd0f2" opacity=".72" filter="url(#hpGlow)"/>
+  <path d="M852 660v-54a22 22 0 0 1 44 0v54Z" fill="#ffe6fb" opacity=".9"/>
+</g>
+
+<!-- mist band at the base -->
+<g filter="url(#hpMist)" opacity=".5">
+  <ellipse cx="800" cy="676" rx="640" ry="62" fill="#c79cf0" opacity=".22"/>
+  <ellipse cx="420" cy="700" rx="320" ry="48" fill="#c79cf0" opacity=".14"/>
+</g>
+
+<!-- terrace -->
+<path d="M0 686 Q400 632 800 668 T1600 648 V820 H0Z" fill="url(#hpGround)"/>
+
+<!-- bridge -->
+<g>
+  <path d="M452 762q348-132 696 0v50q-348-126-696 0Z" fill="#220d3c" stroke="#b98be0" stroke-opacity=".32" stroke-width="2"/>
+  <path d="M492 768q310-114 616 0" fill="none" stroke="#d9b6ff" stroke-opacity=".26" stroke-width="2"/>
+  <g fill="#c9a4ea" opacity=".3">
+    <rect x="540" y="740" width="5" height="24" rx="2.5"/><rect x="630" y="724" width="5" height="24" rx="2.5"/>
+    <rect x="720" y="716" width="5" height="24" rx="2.5"/><rect x="890" y="716" width="5" height="24" rx="2.5"/>
+    <rect x="980" y="724" width="5" height="24" rx="2.5"/><rect x="1070" y="740" width="5" height="24" rx="2.5"/>
+  </g>
+</g>
+
+<!-- waterfall -->
+<g opacity=".72">
+  <path d="M778 700h56l-12 200h-34Z" fill="url(#hpWater)"/>
+  <path d="M790 712h6l-4 178h-4Zm16 0h6l-3 168h-5Z" fill="#f6e6ff" opacity=".4"/>
+</g>
+
+<!-- foreground garden -->
+<g fill="#0a0316" opacity=".92">
+  <path d="M0 792q92-46 196-16 62-38 148-6 44-30 104-14v144H0Z"/>
+  <path d="M1600 792q-92-46-196-16-62-38-148-6-44-30-104-14v144h448Z"/>
+</g>
+<g fill="url(#hpRose)" opacity=".92">
+  <circle cx="84" cy="806" r="30"/><circle cx="136" cy="832" r="22"/><circle cx="40" cy="838" r="20"/>
+  <circle cx="1516" cy="810" r="30"/><circle cx="1464" cy="836" r="21"/><circle cx="1560" cy="842" r="20"/>
+</g>
+<g fill="none" stroke="#4a1d3f" stroke-width="3.4" opacity=".85">
+  <path d="M84 832q8 44-2 74M136 850q9 36 2 54M1516 838q-8 44 2 66M1464 852q-7 32 0 46"/>
+</g>
+
+<!-- lanterns -->
+<g filter="url(#hpGlow)">
+  <circle cx="268" cy="740" r="6" fill="#ffe3a8" opacity=".85"/>
+  <circle cx="1332" cy="736" r="6" fill="#ffe3a8" opacity=".85"/>
+  <circle cx="350" cy="712" r="4" fill="#ffd9f6" opacity=".7"/>
+  <circle cx="1250" cy="708" r="4" fill="#ffd9f6" opacity=".7"/>
+</g>
+
+<!-- butterflies -->
+<g fill="#e7bcff" opacity=".65" filter="url(#hpGlow)">
+  <path d="M1236 372q-16-20-30-6 12 6 16 18-10 2-14 14 18 6 28-12 10 18 28 12-4-12-14-14 4-12 16-18-14-14-30 6Z"/>
+  <path d="M362 428q-12-15-23-4 9 4 12 13-7 1-10 10 13 4 21-9 8 13 21 9-3-9-10-10 3-9 12-13-11-11-23 4Z" opacity=".8"/>
+</g>
+
+<!-- bottom shade so captions stay readable -->
+<linearGradient id="hpFloor" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#05010c" stop-opacity="0"/>
+  <stop offset="1" stop-color="#05010c" stop-opacity=".85"/>
+</linearGradient>
+<rect y="700" width="1600" height="200" fill="url(#hpFloor)"/>
+</svg>
