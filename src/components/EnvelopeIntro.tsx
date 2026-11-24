@@ -56,7 +56,7 @@ export function EnvelopeIntro({ onOpen }: EnvelopeIntroProps) {
       </p>
 
       {/* Envelope */}
-      <div className="relative z-10 mt-8 w-full max-w-[330px]">
+      <div className="relative z-10 mt-9 w-full max-w-[390px] [perspective:1200px]">
         <AnimatePresence mode="wait">
           {stage !== 'letter' ? (
             <motion.button
@@ -67,10 +67,10 @@ export function EnvelopeIntro({ onOpen }: EnvelopeIntroProps) {
               initial={{ opacity: 0, scale: 0.9, y: 18 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 1.08, y: -24 }}
-              transition={{ type: 'spring', stiffness: 170, damping: 20 }}
+              transition={{ type: 'spring', stiffness: 145, damping: 18 }}
               whileHover={reduceMotion ? undefined : { y: -6 }}
               whileTap={{ scale: 0.97 }}
-              className="group relative block w-full cursor-pointer"
+              className="group relative block w-full cursor-pointer [transform-style:preserve-3d]"
             >
               <span className="pointer-events-none absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgba(232,121,249,0.32),transparent_70%)] blur-xl" />
 
@@ -147,18 +147,26 @@ export function EnvelopeIntro({ onOpen }: EnvelopeIntroProps) {
                 </motion.g>
               </svg>
 
-              <span className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-fuchsia-200/70 bg-gradient-to-r from-fuchsia-600 to-purple-600 px-5 py-2.5 text-xs font-bold text-white shadow-[0_0_24px_rgba(192,102,255,0.7)] transition group-hover:scale-105">
+              <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-fuchsia-100/80 bg-gradient-to-r from-fuchsia-500 via-purple-600 to-violet-700 px-6 py-3 text-sm font-bold text-white shadow-[0_0_30px_rgba(192,102,255,0.78)] transition duration-300 group-hover:scale-105">
                 <Heart className="h-3.5 w-3.5 fill-current" /> Tap to open your letter
               </span>
             </motion.button>
           ) : (
             <motion.div
               key="prompt"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="rounded-3xl border border-fuchsia-300/35 bg-gradient-to-b from-[#2a1055]/92 to-[#120629]/96 p-6 text-center shadow-[0_24px_70px_rgba(147,51,234,0.42)]"
+              initial={{ opacity: 0, y: 30, rotateY: 72, scale: 0.88 }}
+              animate={{ opacity: 1, y: 0, rotateY: 0, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 105, damping: 16, mass: 0.9 }}
+              style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
+              className="relative overflow-hidden rounded-[2rem] border border-fuchsia-200/50 bg-[linear-gradient(145deg,rgba(62,27,112,.98),rgba(20,6,48,.98)_68%)] p-7 text-center shadow-[0_28px_90px_rgba(147,51,234,0.5)] sm:p-9"
             >
+              <div className="pointer-events-none absolute inset-2 rounded-[1.55rem] border border-fuchsia-100/15" />
+              <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-fuchsia-400/15 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-16 -left-12 h-44 w-44 rounded-full bg-violet-300/15 blur-3xl" />
+              <div className="relative z-10">
+              <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full border border-fuchsia-100/35 bg-fuchsia-300/10 text-fuchsia-100 shadow-[0_0_28px_rgba(232,121,249,.35)]">
+                <Heart className="h-5 w-5 fill-current" />
+              </div>
               <p className="font-script text-3xl text-white">Welcome to ♥</p>
               <p className="font-script text-4xl leading-tight text-fuchsia-100 drop-shadow-[0_0_18px_rgba(216,130,255,0.85)]">
                 Nishi’s Purple Universe
@@ -173,7 +181,8 @@ export function EnvelopeIntro({ onOpen }: EnvelopeIntroProps) {
               >
                 <Sparkles className="h-4 w-4" /> Step Inside
               </button>
-              <p className="mt-3 text-[11px] text-purple-300/70">A little secret is waiting on the next screen 💜</p>
+              <p className="mt-3 text-[11px] text-purple-200/80">A little secret is waiting on the next screen 💜</p>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
