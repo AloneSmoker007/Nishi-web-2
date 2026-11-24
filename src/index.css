@@ -162,3 +162,283 @@
     animation: none;
   }
 }
+
+
+/* Mobile-only experience polish. Desktop/tablet layout remains unchanged. */
+@media (max-width: 640px) {
+  html { scroll-padding-top: 5.5rem; }
+  body { -webkit-text-size-adjust: 100%; }
+
+  /* Keep the welcome envelope comfortably inside short phone screens. */
+  #envelope-intro {
+    min-height: 100svh;
+    padding-top: max(1.25rem, env(safe-area-inset-top));
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  }
+  #envelope-intro > div.relative.z-10.mt-8 {
+    width: min(100%, 390px);
+    margin-top: clamp(1rem, 4vh, 2rem);
+  }
+  #envelope-intro svg {
+    max-height: min(34svh, 245px);
+  }
+  #envelope-intro button,
+  #envelope-intro a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  #envelope-intro button span:last-child {
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* More breathing room and reliable touch targets in the mobile header. */
+  #home header {
+    padding-top: max(.5rem, env(safe-area-inset-top));
+  }
+  #home header button,
+  #home header a {
+    min-height: 40px;
+  }
+  #home header nav[aria-label="Mobile navigation"] a {
+    min-height: 44px;
+    padding: .7rem .8rem;
+    font-size: .78rem;
+  }
+
+  /* Hide the desktop-style shortcut column; the dedicated mobile menu stays available. */
+  #home nav[aria-label="Quick universe shortcuts"] {
+    display: none;
+  }
+
+  /* Stack hero content with readable type and comfortable spacing. */
+  #home h1 {
+    font-size: clamp(2.35rem, 11vw, 3.25rem);
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  #home .relative.z-10.mx-auto.grid {
+    gap: 1.35rem;
+    padding: 1.25rem 1rem 1.5rem;
+  }
+  #home aside[aria-label="Now Playing"] {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  #home aside[aria-label="Now Playing"] button {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  /* Two compact portal tiles use phone width more efficiently. */
+  #realms > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .7rem;
+  }
+  #realms a {
+    height: 11.5rem;
+    border-radius: 1.1rem;
+  }
+  #realms a h3 {
+    font-size: .82rem;
+    line-height: 1.2;
+  }
+  #realms a p {
+    font-size: .65rem;
+    line-height: 1.35;
+  }
+
+  /* Keep long sections and portrait cards from touching phone edges. */
+  #promise,
+  #realms,
+  #ot7,
+  #taehyung,
+  #busan,
+  #music,
+  #memories,
+  #open-when,
+  #cake,
+  #starmap,
+  #quest,
+  #letter {
+    scroll-margin-top: 1rem;
+  }
+  #ot7 .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .65rem;
+  }
+  #ot7 .ot7-photo-card {
+    min-width: 0;
+  }
+  #ot7 .ot7-photo-card p {
+    overflow-wrap: anywhere;
+  }
+
+  /* Prevent tiny controls and accidental horizontal overflow on narrow devices. */
+  button, a { touch-action: manipulation; }
+  img, svg { max-width: 100%; }
+}
+
+@media (max-width: 380px) {
+  #envelope-intro h1 { font-size: 2.15rem; }
+  #realms > div { gap: .5rem; }
+  #realms a { height: 10.25rem; }
+  #home .relative.z-10.mx-auto.grid { padding-inline: .75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @media (max-width: 640px) {
+    #realms a,
+    #ot7 .ot7-photo-card,
+    #envelope-intro * {
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+
+/* Final phone layout tuning against the actual component structure. */
+@media (max-width: 640px) {
+  /* Hero: compact vertical composition, with the castle framed above the content. */
+  #home > div.pointer-events-none.absolute.inset-0.z-0 img {
+    object-position: 52% 18%;
+  }
+  #home .relative.z-10.mx-auto.grid {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: .75rem;
+    padding: .85rem .9rem 1rem;
+  }
+  #home .relative.z-10.mx-auto.grid > div:first-child {
+    gap: .65rem;
+    align-items: center;
+  }
+  #home .relative.z-10.mx-auto.grid > div:nth-child(2) {
+    display: none;
+  }
+  #home .relative.z-10.mx-auto.grid > div:last-child {
+    gap: .7rem;
+    align-items: stretch;
+  }
+  #home .relative.z-10.mx-auto.grid > div:last-child > p {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.12;
+  }
+  #home .relative.z-10.mx-auto.grid > div:last-child > figure {
+    max-width: 100%;
+    transform: rotate(-1deg);
+  }
+  #home aside[aria-label="Now Playing"] {
+    width: 100%;
+    max-width: 100%;
+  }
+  #home .relative.z-10.mx-auto.grid > div:first-child h1 {
+    font-size: clamp(2.4rem, 10.5vw, 3.2rem);
+  }
+  #home .relative.z-10.mx-auto.grid > div:first-child > div:first-child > p:last-of-type {
+    max-width: 32ch;
+  }
+  #home > header > div {
+    gap: .5rem;
+    padding-inline: .75rem;
+  }
+  #home header .font-script {
+    font-size: 1.05rem;
+  }
+  #home header > div > a {
+    gap: .4rem;
+  }
+  #home header button[aria-label="Toggle sky brightness"] {
+    min-height: 40px;
+    padding-inline: .55rem;
+  }
+  #home header button[aria-label*="navigation menu"] {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Dock stays useful but compact instead of taking over the first screen. */
+  #home > div.relative.z-10.border-t {
+    padding-bottom: max(.35rem, env(safe-area-inset-bottom));
+  }
+  #home > div.relative.z-10.border-t ul {
+    gap: .45rem;
+  }
+  #home > div.relative.z-10.border-t ul li {
+    flex: 1 1 28%;
+    min-width: 0;
+  }
+  #home > div.relative.z-10.border-t ul li strong {
+    font-size: .65rem;
+  }
+  #home > div.relative.z-10.border-t ul li span {
+    font-size: .58rem;
+  }
+
+  /* The interactive constellation is intentionally stacked on phones. */
+  #ot7 > .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .85rem;
+  }
+  #ot7 > .grid > div:first-child {
+    height: 250px;
+  }
+  #ot7 > .grid > div:last-child {
+    padding: 1.15rem;
+  }
+
+  /* Give every content section a consistent phone rhythm and readable headings. */
+  #promise, #realms, #ot7, #taehyung, #busan, #music,
+  #memories, #open-when, #cake, #starmap, #quest, #letter {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  #promise h2, #realms h2, #ot7 h2, #taehyung h2,
+  #music h2, #letter h2 {
+    font-size: clamp(2.25rem, 9vw, 3rem);
+    line-height: 1.08;
+  }
+  #taehyung > div {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.15rem;
+  }
+  #taehyung img {
+    height: 17rem;
+    object-position: center 20%;
+  }
+  #music > div:last-child {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .85rem;
+  }
+  #music .space-y-2\.5 > div {
+    align-items: flex-start;
+    gap: .5rem;
+  }
+  #music .space-y-2\.5 > div > span {
+    max-width: 42%;
+    white-space: normal;
+    text-align: right;
+  }
+  #busan {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #letter > div {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  #home .relative.z-10.mx-auto.grid > div:first-child h1 {
+    font-size: 2.25rem;
+  }
+  #home .relative.z-10.mx-auto.grid {
+    padding-inline: .7rem;
+  }
+  #home header .font-script {
+    font-size: .95rem;
+  }
+  #ot7 > .grid > div:first-child {
+    height: 225px;
+  }
+}
