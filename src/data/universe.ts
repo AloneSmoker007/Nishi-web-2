@@ -32,6 +32,7 @@ export const FAVORITE_BTS_SONGS = [
   { title: 'Black Swan', era: 'Map of the Soul: 7', mood: 'Artistic & deep' },
   { title: 'ON', era: 'Map of the Soul: 7', mood: 'Powerful stadium energy' },
   { title: 'DNA', era: 'Love Yourself: Her', mood: 'Cosmic & bright' },
+  { title: 'FYA', era: 'Nishi’s favorite', mood: 'A special favorite' },
 ];
 
 export const OT7_MEMBERS: Ot7Member[] = [
