@@ -46,7 +46,7 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
           {[
             { href: '#ot7', title: 'OT7 Constellation', desc: 'Seven stars shining as one family.', img: '/assets/ai/realm-ot7-alt.jpg' },
             { href: '#music', title: 'Music Galaxy', desc: '7 full playable tracks & BTS favorites.', img: '/assets/ai/realm-music.jpg' },
-            { href: '#taehyung', title: "V's Violet Corner", desc: 'Kim Taehyung's royal violet sanctuary.', img: '/assets/ai/v-violet-corner.jpg' },
+            { href: '#taehyung', title: "V's Violet Corner", desc: "Kim Taehyung's royal violet sanctuary.", img: '/assets/ai/v-violet-corner.jpg' },
             { href: '#busan', title: 'Busan Memories', desc: 'Unforgettable concert lights & keepsakes.', img: '/assets/ai/realm-memory.jpg' },
             { href: '#quest', title: 'Seven-Star Quest', desc: 'Playable 60fps star-catching mini-game.', img: '/assets/ai/realm-quest.jpg' },
             { href: '#wishes', title: 'Star Wishes', desc: 'Launch your wishes into the night sky.', img: '/assets/ai/realm-wishes.jpg' },
