@@ -102,7 +102,7 @@ export function PinLock({ onUnlock }: { onUnlock: () => void }) {
         <p className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-fuchsia-300">
           <Sparkles className="h-3.5 w-3.5" /> A Little Secret For You
         </p>
-        <h1 className="font-script mt-1 text-4xl text-white drop-shadow-[0_0_16px_rgba(216,130,255,0.85)]">
+        <h1 className="font-script text-shimmer mt-1 text-4xl">
           Nishi’s Purple Universe
         </h1>
 

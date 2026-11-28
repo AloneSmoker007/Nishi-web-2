@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Cake,
   Camera,
@@ -70,7 +70,15 @@ export function PosterHero({
   onSeek,
 }: PosterHeroProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pct = duration > 0 ? Math.min(100, (currentTime / duration) * 100) : 0;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <section id="home" className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden">
@@ -107,8 +115,14 @@ export function PosterHero({
       </div>
 
       {/* Top Pill Navbar */}
-      <header className="sticky top-0 z-30 border-b border-purple-300/15 bg-[#12062a]/70 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1380px] flex-wrap items-center justify-between gap-3 px-4 py-2.5 lg:px-6">
+      <header
+        className={`sticky top-0 z-30 border-b transition-all duration-500 ${
+          scrolled
+            ? 'border-purple-300/20 bg-[#0e0420]/85 shadow-[0_8px_32px_rgba(6,2,18,0.55)] backdrop-blur-xl'
+            : 'border-purple-300/10 bg-[#12062a]/60 backdrop-blur-md'
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1380px] flex-wrap items-center justify-between gap-3 px-4 py-2.5 transition-all duration-500 lg:px-6">
           {/* Brand */}
           <a href="#home" className="flex items-center gap-2.5 text-white no-underline">
             <span className="flex flex-col items-center leading-none drop-shadow-[0_0_10px_rgba(216,130,255,0.85)]">
@@ -119,7 +133,7 @@ export function PosterHero({
             </span>
             <span className="h-5 w-px bg-purple-200/35" />
             <span className="font-script text-2xl text-white drop-shadow-[0_0_12px_rgba(216,130,255,0.85)]">
-              Nishi’s Purple Universe ♥
+              Nishi's Purple Universe ♥
             </span>
           </a>
 
@@ -234,8 +248,8 @@ export function PosterHero({
             <p className="font-script text-2xl text-fuchsia-100 drop-shadow-[0_0_14px_rgba(216,130,255,0.9)]">
               Welcome to ♥
             </p>
-            <h1 className="font-script mt-0.5 bg-gradient-to-b from-white via-fuchsia-100 to-purple-300 bg-clip-text text-5xl leading-[1.02] text-transparent drop-shadow-[0_0_22px_rgba(216,118,255,0.9)] sm:text-6xl">
-              Nishi’s
+            <h1 className="font-script text-shimmer mt-0.5 text-5xl leading-[1.02] sm:text-6xl">
+              Nishi's
               <span className="block">Purple Universe ♥</span>
             </h1>
             <p className="mt-2 max-w-[27ch] text-xs leading-relaxed text-purple-100/95 drop-shadow">
@@ -252,7 +266,7 @@ export function PosterHero({
           {/* Left Glass Menu */}
           <nav
             aria-label="Quick universe shortcuts"
-            className="w-full max-w-[240px] rounded-2xl border border-purple-300/25 bg-[#190938]/80 p-2 shadow-[0_14px_38px_rgba(6,2,18,0.68)] backdrop-blur-md"
+            className="glass-card gradient-border w-full max-w-[240px] rounded-2xl p-2"
           >
             {[
               { href: '#ot7', label: 'OT7 World', Icon: Crown },
@@ -269,11 +283,11 @@ export function PosterHero({
               <a
                 key={href}
                 href={href}
-                className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-purple-50 transition hover:bg-purple-600/35 hover:text-white"
+                className="group flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-purple-50 transition hover:bg-purple-600/35 hover:text-white"
               >
-                <Icon className="h-3.5 w-3.5 text-fuchsia-300" />
+                <Icon className="h-3.5 w-3.5 text-fuchsia-300 transition group-hover:scale-110" />
                 <span>{label}</span>
-                <ChevronRight className="ml-auto h-3.5 w-3.5 opacity-60" />
+                <ChevronRight className="ml-auto h-3.5 w-3.5 opacity-60 transition group-hover:translate-x-0.5" />
               </a>
             ))}
           </nav>
@@ -281,9 +295,9 @@ export function PosterHero({
           {/* BTS Forever Orb */}
           <a
             href="#ot7"
-            className="hidden h-24 w-24 place-items-center rounded-full border border-fuchsia-200/65 bg-[radial-gradient(circle_at_35%_30%,rgba(244,182,255,0.85),rgba(147,51,234,0.75)_48%,rgba(46,16,101,0.95)_100%)] text-center shadow-[0_0_30px_rgba(192,102,255,0.75)] transition hover:scale-105 lg:grid"
+            className="group hidden h-24 w-24 place-items-center rounded-full border border-fuchsia-200/65 bg-[radial-gradient(circle_at_35%_30%,rgba(244,182,255,0.85),rgba(147,51,234,0.75)_48%,rgba(46,16,101,0.95)_100%)] text-center shadow-[0_0_30px_rgba(192,102,255,0.75)] transition hover:scale-105 lg:grid"
           >
-            <span className="font-script text-xl leading-tight text-white drop-shadow">
+            <span className="font-script text-xl leading-tight text-white drop-shadow transition group-hover:scale-105">
               BTS
               <br />
               Forever ♥
@@ -318,7 +332,7 @@ export function PosterHero({
                 <path d="M55.5 51L53 69H67L64.5 51H55.5Z" fill="#1e073b" />
               </svg>
             </div>
-            <span className="font-script -mt-3 rounded-full border border-amber-200/75 bg-gradient-to-b from-[#43167d] to-[#200a44] px-6 py-1.5 text-2xl text-amber-50 shadow-[0_8px_24px_rgba(8,2,22,0.8),0_0_20px_rgba(192,102,255,0.6)]">
+            <span className="font-script -mt-3 rounded-full border border-amber-200/75 bg-gradient-to-b from-[#43167d] to-[#200a44] px-6 py-1.5 text-2xl text-amber-50 shadow-[0_8px_24px_rgba(8,2,22,0.8),0_0_20px_rgba(192,102,255,0.6)] transition group-hover:shadow-[0_8px_24px_rgba(8,2,22,0.8),0_0_28px_rgba(232,121,249,0.8)]">
               Unlock the Magic… ♥
             </span>
           </a>
@@ -336,19 +350,19 @@ export function PosterHero({
           {/* Now Playing Glass Card */}
           <aside
             aria-label="Now Playing"
-            className="w-full max-w-[258px] rounded-2xl border border-purple-300/35 bg-[#1e0b42]/85 p-3.5 shadow-[0_16px_40px_rgba(6,2,18,0.7)] backdrop-blur-md"
+            className="glass-card gradient-border w-full max-w-[258px] rounded-2xl p-3.5"
           >
             <div className="mb-2 flex items-center justify-between text-xs font-bold text-purple-100">
               <span className="inline-flex items-center gap-1.5">
                 <Music className="h-3.5 w-3.5 text-fuchsia-300" /> Now Playing
               </span>
-              <a href="#music" className="text-purple-200/80 hover:text-white" aria-label="Open Music Galaxy">
+              <a href="#music" className="text-purple-200/80 transition hover:text-white" aria-label="Open Music Galaxy">
                 <ChevronRight className="h-4 w-4" />
               </a>
             </div>
 
-            <div className="mb-2.5 grid h-20 w-full place-items-center rounded-xl border border-purple-300/30 bg-[radial-gradient(circle_at_50%_45%,rgba(192,102,255,0.65),rgba(46,16,101,0.95)_75%)] shadow-inner">
-              <div className="flex flex-col items-center text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.75)]">
+            <div className="group mb-2.5 grid h-20 w-full place-items-center overflow-hidden rounded-xl border border-purple-300/30 bg-[radial-gradient(circle_at_50%_45%,rgba(192,102,255,0.65),rgba(46,16,101,0.95)_75%)] shadow-inner transition hover:shadow-[inset_0_0_24px_rgba(232,121,249,0.35)]">
+              <div className="flex flex-col items-center text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.75)] transition group-hover:scale-110">
                 <svg viewBox="0 0 24 24" className="h-7 w-7 fill-current">
                   <path d="M4 3.5l6.8 3.2v13.8L4 17.5V3.5zm16 0l-6.8 3.2v13.8l6.8-3V3.5z" />
                 </svg>
@@ -367,7 +381,7 @@ export function PosterHero({
                 type="button"
                 onClick={onToggleShuffle}
                 aria-label="Toggle shuffle"
-                className={`rounded-full p-1.5 transition ${
+                className={`rounded-full p-1.5 transition hover:scale-110 ${
                   shuffle ? 'text-fuchsia-300' : 'text-purple-200/60 hover:text-white'
                 }`}
               >
@@ -378,7 +392,7 @@ export function PosterHero({
                 id="hero-prev"
                 onClick={onPrev}
                 aria-label="Previous track"
-                className="rounded-full p-1.5 text-purple-100 transition hover:bg-purple-700/50"
+                className="rounded-full p-1.5 text-purple-100 transition hover:scale-110 hover:bg-purple-700/50"
               >
                 <SkipBack className="h-4 w-4 fill-current" />
               </button>
@@ -387,7 +401,7 @@ export function PosterHero({
                 id="hero-play"
                 onClick={onTogglePlay}
                 aria-label={isPlaying ? 'Pause' : 'Play'}
-                className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 text-white shadow-[0_0_18px_rgba(217,70,239,0.75)] transition hover:scale-105"
+                className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 text-white shadow-[0_0_18px_rgba(217,70,239,0.75)] transition hover:scale-110 active:scale-95"
               >
                 {isPlaying ? <Pause className="h-4 w-4 fill-current" /> : <Play className="ml-0.5 h-4 w-4 fill-current" />}
               </button>
@@ -396,7 +410,7 @@ export function PosterHero({
                 id="hero-next"
                 onClick={onNext}
                 aria-label="Next track"
-                className="rounded-full p-1.5 text-purple-100 transition hover:bg-purple-700/50"
+                className="rounded-full p-1.5 text-purple-100 transition hover:scale-110 hover:bg-purple-700/50"
               >
                 <SkipForward className="h-4 w-4 fill-current" />
               </button>
@@ -404,7 +418,7 @@ export function PosterHero({
                 type="button"
                 onClick={onToggleRepeat}
                 aria-label="Toggle repeat"
-                className={`rounded-full p-1.5 transition ${
+                className={`rounded-full p-1.5 transition hover:scale-110 ${
                   repeat ? 'text-fuchsia-300' : 'text-purple-200/60 hover:text-white'
                 }`}
               >
@@ -455,7 +469,7 @@ export function PosterHero({
           </aside>
 
           {/* Tilted Cream Parchment Letter */}
-          <figure className="relative w-full max-w-[258px] -rotate-2 rounded-xl border border-amber-100/80 bg-gradient-to-br from-[#fff8eb] via-[#f6e7cc] to-[#ebd2ad] p-3.5 text-center text-[#3d1c4f] shadow-[0_16px_36px_rgba(8,2,22,0.7)]">
+          <figure className="relative w-full max-w-[258px] -rotate-2 rounded-xl border border-amber-100/80 bg-gradient-to-br from-[#fff8eb] via-[#f6e7cc] to-[#ebd2ad] p-3.5 text-center text-[#3d1c4f] shadow-[0_16px_36px_rgba(8,2,22,0.7)] transition hover:rotate-0 hover:shadow-[0_20px_44px_rgba(8,2,22,0.8)]">
             <span className="pointer-events-none absolute -bottom-2.5 -left-2.5 text-2xl drop-shadow">🌹</span>
             <p className="font-script text-xl text-purple-900">To my dearest Nishi ♥</p>
             <p className="mt-1 text-[11px] leading-relaxed text-purple-950/90">
@@ -470,37 +484,25 @@ export function PosterHero({
       <div className="relative z-10 border-t border-purple-300/20 bg-[#12062a]/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1360px] flex-wrap items-center justify-between gap-3 px-4 py-2.5 lg:px-6">
           <ul className="flex flex-1 flex-wrap items-center justify-around gap-3 text-center text-[11px] text-purple-100">
-            <li className="flex flex-col items-center">
-              <InfinityIcon className="mb-0.5 h-4 w-4 text-fuchsia-300" />
-              <strong className="text-white">7 Members</strong>
-              <span className="text-[10px] text-purple-200/75">1 Family</span>
-            </li>
-            <li className="flex flex-col items-center">
-              <Music className="mb-0.5 h-4 w-4 text-fuchsia-300" />
-              <strong className="text-white">Endless Music</strong>
-              <span className="text-[10px] text-purple-200/75">7 Real Tracks</span>
-            </li>
-            <li className="flex flex-col items-center">
-              <Camera className="mb-0.5 h-4 w-4 text-fuchsia-300" />
-              <strong className="text-white">Beautiful Gallery</strong>
-              <span className="text-[10px] text-purple-200/75">Busan Memories</span>
-            </li>
-            <li className="flex flex-col items-center">
-              <Star className="mb-0.5 h-4 w-4 text-fuchsia-300" />
-              <strong className="text-white">Dream Big</strong>
-              <span className="text-[10px] text-purple-200/75">Seven Stars</span>
-            </li>
-            <li className="flex flex-col items-center">
-              <Heart className="mb-0.5 h-4 w-4 text-fuchsia-300" />
-              <strong className="text-white">Always With You</strong>
-              <span className="text-[10px] text-purple-200/75">Forever Purple</span>
-            </li>
+            {[
+              { Icon: InfinityIcon, strong: '7 Members', sub: '1 Family' },
+              { Icon: Music, strong: 'Endless Music', sub: '7 Real Tracks' },
+              { Icon: Camera, strong: 'Beautiful Gallery', sub: 'Busan Memories' },
+              { Icon: Star, strong: 'Dream Big', sub: 'Seven Stars' },
+              { Icon: Heart, strong: 'Always With You', sub: 'Forever Purple' },
+            ].map(({ Icon, strong, sub }) => (
+              <li key={strong} className="flex flex-col items-center transition hover:scale-105">
+                <Icon className="mb-0.5 h-4 w-4 text-fuchsia-300" />
+                <strong className="text-white">{strong}</strong>
+                <span className="text-[10px] text-purple-200/75">{sub}</span>
+              </li>
+            ))}
           </ul>
           <a
             href="#promise"
-            className="inline-flex items-center gap-1 rounded-full border border-purple-200/50 bg-purple-700/70 px-4 py-1.5 text-xs font-bold text-white shadow-[0_0_16px_rgba(168,85,247,0.5)] transition hover:bg-fuchsia-600"
+            className="group inline-flex items-center gap-1 rounded-full border border-purple-200/50 bg-purple-700/70 px-4 py-1.5 text-xs font-bold text-white shadow-[0_0_16px_rgba(168,85,247,0.5)] transition hover:bg-fuchsia-600"
           >
-            Scroll Down <ChevronDown className="h-3.5 w-3.5" />
+            Scroll Down <ChevronDown className="h-3.5 w-3.5 transition group-hover:animate-bounce" />
           </a>
         </div>
       </div>

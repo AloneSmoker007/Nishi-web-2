@@ -45,11 +45,11 @@ export function StarWishes() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.65, ease: 'easeOut' }}
-        className="rounded-3xl border border-purple-300/25 bg-[#160633]/85 p-6 shadow-[0_20px_60px_rgba(6,2,18,0.7)] backdrop-blur-md sm:p-8"
+        className="glass-card gradient-border rounded-3xl p-6 sm:p-8"
       >
         <div className="mb-5 text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-fuchsia-300">Make a Wish</p>
-          <h2 className="font-script mt-1 text-5xl text-white drop-shadow-[0_0_16px_rgba(216,130,255,0.8)]">
+          <h2 className="font-script text-shimmer mt-1 text-5xl">
             Star Wishes Constellation
           </h2>
           <p className="mt-1 text-sm text-purple-200/85">
@@ -65,12 +65,12 @@ export function StarWishes() {
             onChange={(e) => setInput(e.target.value)}
             maxLength={120}
             placeholder="Write your wish here… ✨"
-            className="flex-1 rounded-full border border-purple-300/30 bg-purple-950/75 px-4 py-2.5 text-sm text-white placeholder-purple-300/60 outline-none focus:border-fuchsia-400"
+            className="flex-1 rounded-full border border-purple-300/30 bg-purple-950/75 px-4 py-2.5 text-sm text-white placeholder-purple-300/60 outline-none transition focus:border-fuchsia-400 focus:shadow-[0_0_18px_rgba(232,121,249,0.3)]"
           />
           <button
             type="submit"
             id="wish-send"
-            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-fuchsia-600 to-purple-600 px-5 py-2.5 text-xs font-bold text-white shadow-[0_0_20px_rgba(192,102,255,0.6)] transition hover:scale-105"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-fuchsia-600 to-purple-600 px-5 py-2.5 text-xs font-bold text-white shadow-[0_0_20px_rgba(192,102,255,0.6)] transition hover:scale-105 active:scale-95"
           >
             <Send className="h-3.5 w-3.5" /> Send to Stars
           </button>
@@ -85,9 +85,10 @@ export function StarWishes() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.7 }}
                 transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-                className="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-300/35 bg-purple-900/60 px-3.5 py-1.5 text-xs font-medium text-purple-50 shadow-[0_0_16px_rgba(168,85,247,0.35)]"
+                whileHover={{ scale: 1.05 }}
+                className="group inline-flex items-center gap-1.5 rounded-full border border-fuchsia-300/35 bg-purple-900/60 px-3.5 py-1.5 text-xs font-medium text-purple-50 shadow-[0_0_16px_rgba(168,85,247,0.35)] transition hover:border-fuchsia-300/60"
               >
-                <Sparkles className="h-3.5 w-3.5 text-amber-300" /> {w}
+                <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-twinkle" /> {w}
               </motion.span>
             ))}
           </AnimatePresence>
@@ -99,7 +100,7 @@ export function StarWishes() {
             <button
               type="button"
               onClick={clearWishes}
-              className="inline-flex items-center gap-1 rounded-full border border-purple-300/20 px-2.5 py-1 text-[11px] text-purple-200/80 hover:bg-purple-800/50"
+              className="inline-flex items-center gap-1 rounded-full border border-purple-300/20 px-2.5 py-1 text-[11px] text-purple-200/80 transition hover:scale-105 hover:border-fuchsia-300/40 hover:bg-purple-800/50"
             >
               <Trash2 className="h-3 w-3" /> Clear
             </button>

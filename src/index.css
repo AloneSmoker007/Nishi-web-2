@@ -2,13 +2,21 @@
 
 @layer base {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     overflow-x: clip;
+  }
+
+  ::selection {
+    background: rgba(232, 121, 249, 0.35);
+    color: #fff;
   }
 }
 
@@ -20,6 +28,28 @@
   font-family: 'Cinzel', serif;
 }
 
+/* ---- Premium scrollbar ---- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b041c;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #c026d3);
+  border-radius: 999px;
+  border: 2px solid #0b041c;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #9333ea, #e879f9);
+}
+html {
+  scrollbar-color: #7c3aed #0b041c;
+  scrollbar-width: thin;
+}
+
+/* ---- Keyframes ---- */
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0) rotate(-4deg); }
   50% { transform: translateY(-10px) rotate(5deg); }
@@ -38,6 +68,27 @@
   80% { transform: translateX(6px); }
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes riseFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 .animate-float-slow {
   animation: floatSlow 6.5s ease-in-out infinite;
 }
@@ -50,6 +101,70 @@
   animation: shake 0.42s ease-in-out;
 }
 
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-rise {
+  animation: riseFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Shimmering gold/purple text */
+.text-shimmer {
+  background: linear-gradient(
+    100deg,
+    #fff 10%,
+    #f5d0fe 30%,
+    #e879f9 50%,
+    #c084fc 70%,
+    #fff 90%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Premium glass card */
+.glass-card {
+  background: linear-gradient(145deg, rgba(35, 14, 64, 0.72), rgba(17, 7, 38, 0.88));
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(216, 180, 254, 0.18);
+  box-shadow:
+    0 20px 60px rgba(6, 2, 18, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+  background-clip: padding-box;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(232, 121, 249, 0.6), rgba(168, 85, 247, 0.2), rgba(232, 121, 249, 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Smooth section reveal helper */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Dreamy purple universe background */
 .nishi-galaxy-background {
@@ -92,6 +207,16 @@
   opacity: 0.17;
   background: radial-gradient(ellipse, rgba(232, 121, 249, 0.8) 0%, rgba(109, 40, 217, 0.42) 42%, transparent 72%);
   animation: nishiAuroraDrift 32s ease-in-out infinite alternate-reverse;
+}
+
+.nishi-aurora-three {
+  bottom: -10vh;
+  left: 30vw;
+  width: 50vw;
+  height: 40vh;
+  opacity: 0.12;
+  background: radial-gradient(ellipse, rgba(168, 85, 247, 0.7) 0%, rgba(91, 33, 182, 0.3) 50%, transparent 75%);
+  animation: nishiAuroraDrift 38s ease-in-out infinite alternate;
 }
 
 .nishi-moon-halo {
@@ -149,6 +274,11 @@
     opacity: 0.13;
   }
 
+  .nishi-aurora-three {
+    width: 90vw;
+    left: 5vw;
+  }
+
   .nishi-moon-halo {
     top: 7%;
     right: 7%;
@@ -158,7 +288,18 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nishi-aurora-one,
-  .nishi-aurora-two {
+  .nishi-aurora-two,
+  .nishi-aurora-three {
     animation: none;
   }
+  .text-shimmer {
+    animation: none;
+  }
+}
+
+/* Focus visible polish */
+:focus-visible {
+  outline: 2px solid rgba(232, 121, 249, 0.7);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

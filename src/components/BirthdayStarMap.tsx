@@ -63,7 +63,7 @@ export function BirthdayStarMap() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6 }}
-        className="rounded-3xl border border-purple-300/25 bg-gradient-to-br from-[#210b47]/90 via-[#150631]/94 to-[#0d0320]/96 p-6 shadow-[0_20px_60px_rgba(6,2,18,0.65)] backdrop-blur-md sm:p-8"
+        className="glass-card gradient-border rounded-3xl p-6 sm:p-8"
       >
         <div className="grid items-center gap-8 md:grid-cols-2">
           {/* Circular Night Sky Star Map */}
@@ -127,7 +127,7 @@ export function BirthdayStarMap() {
             <p className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-fuchsia-300">
               <Star className="h-3.5 w-3.5" /> The Night You Were Born
             </p>
-            <h2 className="font-script mt-1 text-5xl text-white drop-shadow-[0_0_16px_rgba(216,130,255,0.8)]">
+            <h2 className="font-script text-shimmer mt-1 text-5xl">
               Written in the Stars
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-purple-100/85">

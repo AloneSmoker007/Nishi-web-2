@@ -46,7 +46,7 @@ export function EnvelopeIntro({ onOpen }: EnvelopeIntroProps) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.1 }}
-        className="font-script relative z-10 mt-1 text-center text-4xl text-white drop-shadow-[0_0_20px_rgba(216,130,255,0.85)] sm:text-5xl"
+        className="font-script text-shimmer relative z-10 mt-1 text-center text-4xl sm:text-5xl"
       >
         For Nishi
       </motion.h1>
@@ -160,7 +160,7 @@ export function EnvelopeIntro({ onOpen }: EnvelopeIntroProps) {
               className="rounded-3xl border border-fuchsia-300/35 bg-gradient-to-b from-[#2a1055]/92 to-[#120629]/96 p-6 text-center shadow-[0_24px_70px_rgba(147,51,234,0.42)]"
             >
               <p className="font-script text-3xl text-white">Welcome to ♥</p>
-              <p className="font-script text-4xl leading-tight text-fuchsia-100 drop-shadow-[0_0_18px_rgba(216,130,255,0.85)]">
+              <p className="font-script text-shimmer text-4xl leading-tight">
                 Nishi’s Purple Universe
               </p>
               <p className="mt-3 text-xs leading-relaxed text-purple-100/85">

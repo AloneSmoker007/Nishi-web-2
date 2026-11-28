@@ -23,19 +23,19 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.65 }}
-          className="rounded-3xl border border-purple-300/25 bg-gradient-to-br from-[#230c4c]/85 via-[#170736]/90 to-[#110428]/95 p-7 text-center shadow-[0_20px_60px_rgba(6,2,18,0.65)] backdrop-blur-md sm:p-10"
+          className="glass-card gradient-border rounded-3xl p-7 text-center sm:p-10"
         >
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-fuchsia-300">The Purple Promise</p>
-          <h2 className="font-script mt-1 text-5xl text-white drop-shadow-[0_0_16px_rgba(216,130,255,0.8)]">
+          <h2 className="font-script text-shimmer mt-1 text-5xl">
             I Purple You Forever
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-purple-100/90">
             Purple is the last color of the rainbow — it means trusting, loving, and staying together for a very long
-            time. Just like your promise: always staying by each other’s side through every season.
+            time. Just like your promise: always staying by each other's side through every season.
           </p>
           <blockquote className="mx-auto mt-5 max-w-xl rounded-2xl border border-fuchsia-300/30 bg-purple-950/60 px-5 py-4 text-sm font-medium italic text-fuchsia-100">
             “{PRESERVED_ARMY_QUOTE}”
-            <footer className="mt-1 text-[11px] not-italic text-purple-300">— Nishi’s message for ARMY 💜</footer>
+            <footer className="mt-1 text-[11px] not-italic text-purple-300">— Nishi's message for ARMY 💜</footer>
           </blockquote>
         </motion.div>
       </section>
@@ -46,7 +46,7 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
           {[
             { href: '#ot7', title: 'OT7 Constellation', desc: 'Seven stars shining as one family.', img: '/assets/ai/realm-ot7-alt.jpg' },
             { href: '#music', title: 'Music Galaxy', desc: '7 full playable tracks & BTS favorites.', img: '/assets/ai/realm-music.jpg' },
-            { href: '#taehyung', title: "V's Violet Corner", desc: 'Kim Taehyung’s royal violet sanctuary.', img: '/assets/ai/v-violet-corner.jpg' },
+            { href: '#taehyung', title: "V's Violet Corner", desc: 'Kim Taehyung's royal violet sanctuary.', img: '/assets/ai/v-violet-corner.jpg' },
             { href: '#busan', title: 'Busan Memories', desc: 'Unforgettable concert lights & keepsakes.', img: '/assets/ai/realm-memory.jpg' },
             { href: '#quest', title: 'Seven-Star Quest', desc: 'Playable 60fps star-catching mini-game.', img: '/assets/ai/realm-quest.jpg' },
             { href: '#wishes', title: 'Star Wishes', desc: 'Launch your wishes into the night sky.', img: '/assets/ai/realm-wishes.jpg' },
@@ -69,9 +69,12 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0d0322] via-[#0d0322]/45 to-transparent opacity-90 transition group-hover:opacity-75" />
               <div className="absolute inset-x-0 bottom-0 p-4">
-                <h3 className="font-display text-lg font-bold text-white">{r.title}</h3>
+                <h3 className="font-display text-lg font-bold text-white transition group-hover:text-fuchsia-200">{r.title}</h3>
                 <p className="mt-0.5 text-xs text-purple-200/90">{r.desc}</p>
               </div>
+              <span className="pointer-events-none absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full border border-fuchsia-300/40 bg-[#12052b]/70 text-fuchsia-200 opacity-0 backdrop-blur transition group-hover:opacity-100">
+                <Sparkles className="h-3.5 w-3.5" />
+              </span>
             </motion.a>
           ))}
         </div>
@@ -154,7 +157,7 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
       <section id="ot7" className="mx-auto max-w-5xl px-4 py-12">
         <div className="mb-6 text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-fuchsia-300">Seven Stars · Equal Light</p>
-          <h2 className="font-script mt-1 text-5xl text-white">OT7 Constellation</h2>
+          <h2 className="font-script text-shimmer mt-1 text-5xl">OT7 Constellation</h2>
           <p className="mt-1 text-sm text-purple-200/85">Tap any star in the constellation to read their tribute.</p>
         </div>
 
@@ -179,7 +182,7 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
                   className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full px-2.5 py-1 text-xs font-bold transition ${
                     active
                       ? 'scale-115 border border-amber-200 bg-fuchsia-500 text-white shadow-[0_0_22px_rgba(232,121,249,0.95)]'
-                      : 'border border-purple-300/40 bg-[#250e4d]/90 text-purple-100 hover:bg-purple-600'
+                      : 'border border-purple-300/40 bg-[#250e4d]/90 text-purple-100 hover:scale-105 hover:bg-purple-600'
                   }`}
                 >
                   ★ {m.stage}
@@ -188,7 +191,7 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
             })}
           </div>
 
-          <div className="flex flex-col justify-center rounded-3xl border border-purple-300/25 bg-[#190838]/85 p-6 backdrop-blur-md">
+          <div className="glass-card gradient-border flex flex-col justify-center rounded-3xl p-6">
             <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-fuchsia-300/35 bg-fuchsia-500/20 px-3 py-1 text-[11px] font-bold text-fuchsia-200">
               <Crown className="h-3.5 w-3.5" /> {selectedMember.role}
             </span>
@@ -201,30 +204,30 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
 
       {/* 4. V's Violet Corner */}
       <section id="taehyung" className="mx-auto max-w-5xl px-4 py-12">
-        <div className="grid items-center gap-6 overflow-hidden rounded-3xl border border-fuchsia-300/30 bg-gradient-to-r from-[#270d52]/90 to-[#14062e]/95 p-6 shadow-[0_20px_60px_rgba(10,3,26,0.7)] md:grid-cols-2 md:p-8">
+        <div className="glass-card gradient-border grid items-center gap-6 overflow-hidden rounded-3xl bg-gradient-to-r from-[#270d52]/90 to-[#14062e]/95 p-6 md:grid-cols-2 md:p-8">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-fuchsia-300">Special Royal Corner</p>
-            <h2 className="font-script mt-1 text-5xl text-white">V’s Violet Corner</h2>
+            <h2 className="font-script text-shimmer mt-1 text-5xl">V's Violet Corner</h2>
             <p className="mt-3 text-sm leading-relaxed text-purple-100/90">
-              Dedicated to Kim Taehyung — the soul behind “I Purple You”, velvet baritone vocals, timeless style, and
-              the warmest purple light in Nishi’s universe.
+              Dedicated to Kim Taehyung — the soul behind "I Purple You", velvet baritone vocals, timeless style, and
+              the warmest purple light in Nishi's universe.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {['Kim Taehyung', 'I Purple You 💜', 'Violet Star', 'Winter Bear'].map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-fuchsia-300/30 bg-purple-900/50 px-3 py-1 text-xs font-semibold text-fuchsia-100"
+                  className="rounded-full border border-fuchsia-300/30 bg-purple-900/50 px-3 py-1 text-xs font-semibold text-fuchsia-100 transition hover:scale-105 hover:border-fuchsia-300/60"
                 >
                   {tag}
                 </span>
               ))}
             </div>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-purple-300/25">
+          <div className="group overflow-hidden rounded-2xl border border-purple-300/25">
             <img
               src="/assets/ai/v-violet-corner.jpg"
               alt="Royal purple galaxy prince portrait for V's Violet Corner"
-              className="h-72 w-full object-cover"
+              className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
               loading="lazy"
             />
           </div>
@@ -235,11 +238,11 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
       <section id="music" className="mx-auto max-w-5xl px-4 py-12">
         <div className="mb-6 text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-fuchsia-300">7 Playable Tracks</p>
-          <h2 className="font-script mt-1 text-5xl text-white">Music Galaxy</h2>
+          <h2 className="font-script text-shimmer mt-1 text-5xl">Music Galaxy</h2>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2">
-          <div className="rounded-3xl border border-purple-300/25 bg-[#170736]/85 p-5 backdrop-blur-md">
+          <div className="glass-card gradient-border rounded-3xl p-5">
             <h3 className="mb-3 flex items-center gap-2 text-sm font-bold text-white">
               <Disc3 className="h-4 w-4 text-fuchsia-300" /> Universe Soundtrack (Real Audio)
             </h3>
@@ -253,18 +256,18 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
                       onClick={() => onSelectTrack(idx)}
                       className={`flex w-full items-center justify-between rounded-xl border px-3.5 py-2.5 text-left transition ${
                         active
-                          ? 'border-fuchsia-300/70 bg-fuchsia-600/30 text-white'
-                          : 'border-purple-300/15 bg-purple-950/50 text-purple-100 hover:bg-purple-800/40'
+                          ? 'border-fuchsia-300/70 bg-fuchsia-600/30 text-white shadow-[0_0_18px_rgba(232,121,249,0.35)]'
+                          : 'border-purple-300/15 bg-purple-950/50 text-purple-100 hover:scale-[1.02] hover:bg-purple-800/40'
                       }`}
                     >
                       <span className="flex items-center gap-2.5">
-                        <span>{t.emoji}</span>
+                        <span className="text-base">{t.emoji}</span>
                         <span>
                           <strong className="block text-xs font-bold">{t.title}</strong>
                           <span className="text-[11px] text-purple-200/75">{t.subtitle}</span>
                         </span>
                       </span>
-                      <span className="grid h-7 w-7 place-items-center rounded-full bg-purple-700/70 text-white">
+                      <span className="grid h-7 w-7 place-items-center rounded-full bg-purple-700/70 text-white transition hover:scale-110">
                         {active && isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="ml-0.5 h-3.5 w-3.5" />}
                       </span>
                     </button>
@@ -274,21 +277,21 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-purple-300/25 bg-[#170736]/85 p-5 backdrop-blur-md">
+          <div className="glass-card gradient-border rounded-3xl p-5">
             <h3 className="mb-3 flex items-center gap-2 text-sm font-bold text-white">
-              <Music className="h-4 w-4 text-fuchsia-300" /> Nishi’s Favorite BTS Songs
+              <Music className="h-4 w-4 text-fuchsia-300" /> Nishi's Favorite BTS Songs
             </h3>
             <div className="space-y-2.5">
               {FAVORITE_BTS_SONGS.map((s) => (
                 <div
                   key={s.title}
-                  className="flex items-center justify-between rounded-xl border border-purple-300/15 bg-purple-950/55 px-4 py-3"
+                  className="group flex items-center justify-between rounded-xl border border-purple-300/15 bg-purple-950/55 px-4 py-3 transition hover:border-fuchsia-300/40 hover:bg-purple-900/50"
                 >
                   <div>
-                    <p className="text-sm font-bold text-white">{s.title}</p>
+                    <p className="text-sm font-bold text-white transition group-hover:text-fuchsia-200">{s.title}</p>
                     <p className="text-xs text-purple-200/75">{s.era}</p>
                   </div>
-                  <span className="rounded-full bg-fuchsia-500/20 px-2.5 py-1 text-[11px] font-semibold text-fuchsia-200">
+                  <span className="rounded-full bg-fuchsia-500/20 px-2.5 py-1 text-[11px] font-semibold text-fuchsia-200 transition group-hover:bg-fuchsia-500/30">
                     {s.mood}
                   </span>
                 </div>
@@ -300,36 +303,40 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
 
       {/* 6. Busan Memories + 8. BMW Dream Road */}
       <section id="busan" className="mx-auto grid max-w-5xl gap-5 px-4 py-12 md:grid-cols-2">
-        <div className="overflow-hidden rounded-3xl border border-purple-300/25 bg-[#170736]/85 backdrop-blur-md">
-          <img
-            src="/assets/nishi-busan-memory.jpg"
-            alt="Busan concert memory"
-            className="h-56 w-full object-cover"
-            loading="lazy"
-          />
+        <div className="group glass-card gradient-border overflow-hidden rounded-3xl">
+          <div className="overflow-hidden">
+            <img
+              src="/assets/nishi-busan-memory.jpg"
+              alt="Busan concert memory"
+              className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
           <div className="p-6">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-fuchsia-300">Special Keepsake</p>
-            <h3 className="font-script mt-1 text-4xl text-white">Busan Memories</h3>
+            <h3 className="font-script text-shimmer mt-1 text-4xl">Busan Memories</h3>
             <p className="mt-2 text-sm text-purple-100/85">
               Ocean lights, stadium purple waves, and the unforgettable Busan concert memory kept glowing forever.
             </p>
           </div>
         </div>
 
-        <div id="bmw" className="overflow-hidden rounded-3xl border border-purple-300/25 bg-[#170736]/85 backdrop-blur-md">
-          <img
-            src="/assets/ai/realm-road.jpg"
-            alt="Purple night highway BMW dream road"
-            className="h-56 w-full object-cover"
-            loading="lazy"
-          />
+        <div id="bmw" className="group glass-card gradient-border overflow-hidden rounded-3xl">
+          <div className="overflow-hidden">
+            <img
+              src="/assets/ai/realm-road.jpg"
+              alt="Purple night highway BMW dream road"
+              className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
           <div className="p-6">
             <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.22em] text-fuchsia-300">
               <Car className="h-3.5 w-3.5" /> Dream Drive
             </p>
-            <h3 className="font-script mt-1 text-4xl text-white">BMW Dream Road</h3>
+            <h3 className="font-script text-shimmer mt-1 text-4xl">BMW Dream Road</h3>
             <p className="mt-2 text-sm text-purple-100/85">
-              Midnight purple highway, favorite BTS tracks on full volume, and Nishi’s dream BMW cruising under the
+              Midnight purple highway, favorite BTS tracks on full volume, and Nishi's dream BMW cruising under the
               stars.
             </p>
           </div>
@@ -338,9 +345,9 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
 
       {/* 9. Final Letter & Secret Ending */}
       <section id="letter" className="mx-auto max-w-4xl px-4 py-14 text-center">
-        <div className="rounded-3xl border border-fuchsia-300/35 bg-gradient-to-b from-[#270d54]/90 to-[#12052b]/95 p-8 shadow-[0_24px_70px_rgba(147,51,234,0.38)] backdrop-blur-md">
+        <div className="glass-card gradient-border rounded-3xl bg-gradient-to-b from-[#270d54]/90 to-[#12052b]/95 p-8 shadow-[0_24px_70px_rgba(147,51,234,0.38)]">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-fuchsia-300">Secret Gift Box</p>
-          <h2 className="font-script mt-1 text-5xl text-white">A Letter For Nishi</h2>
+          <h2 className="font-script text-shimmer mt-1 text-5xl">A Letter For Nishi</h2>
 
           {/* Animated Glowing Gift Box */}
           <div className="mt-7 flex flex-col items-center">
@@ -372,7 +379,7 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
                   className="absolute inset-0 h-full w-full object-cover opacity-60 transition duration-500 group-hover:scale-110"
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-[#12052b]/70 via-transparent to-[#12052b]/30" />
-                <span className="relative z-10 text-7xl drop-shadow-[0_8px_22px_rgba(0,0,0,0.8)]">
+                <span className="relative z-10 text-7xl drop-shadow-[0_8px_22px_rgba(0,0,0,0.8)] transition group-hover:scale-110">
                   {letterOpen ? '💌' : '🎁'}
                 </span>
               </button>
@@ -393,7 +400,7 @@ export function UniverseSections({ currentTrack, isPlaying, onSelectTrack }: Uni
             >
               <p className="font-script text-3xl text-purple-900">To my dearest Nishi ♥</p>
               <p className="mt-3 text-sm leading-relaxed">
-                This entire purple universe was built just for you — from the seven stars of BTS and V’s Violet Corner
+                This entire purple universe was built just for you — from the seven stars of BTS and V's Violet Corner
                 to your dream BMW road and Busan memories. No matter how far the miles are, may your days always stay
                 bright, peaceful, and full of purple magic.
               </p>

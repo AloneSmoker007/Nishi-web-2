@@ -49,7 +49,7 @@ export function BirthdayCake() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.6 }}
-        className="relative overflow-hidden rounded-3xl border border-purple-300/25 bg-gradient-to-br from-[#230c4c]/98 via-[#170736]/98 to-[#100426]/99 p-6 text-center shadow-[0_20px_60px_rgba(6,2,18,0.65)] backdrop-blur-md sm:p-10"
+        className="glass-card gradient-border relative overflow-hidden rounded-3xl p-6 text-center sm:p-10"
       >
         {/* soft halo behind the cake */}
         <div
@@ -85,8 +85,8 @@ export function BirthdayCake() {
         <p className="relative inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-fuchsia-300">
           <Cake className="h-3.5 w-3.5" /> Make a Birthday Wish
         </p>
-        <h2 className="font-script relative mt-1 text-5xl text-white drop-shadow-[0_0_16px_rgba(216,130,255,0.85)]">
-          Nishi’s Purple Cake
+        <h2 className="font-script text-shimmer relative mt-1 text-5xl">
+          Nishi's Purple Cake
         </h2>
         <p className="relative mx-auto mt-1 max-w-md text-sm leading-relaxed text-purple-200/85">
           Seven glowing candles — one for every star of OT7. Close your eyes, make a wish, then tap each candle to

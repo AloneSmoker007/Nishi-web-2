@@ -124,7 +124,7 @@ export function SevenStarQuest() {
     <section id="quest" className="relative z-10 mx-auto max-w-5xl px-4 py-16">
       <div className="mb-6 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-fuchsia-300">Interactive Mini-Game</p>
-        <h2 className="font-script mt-1 text-5xl text-white drop-shadow-[0_0_16px_rgba(216,130,255,0.75)]">
+        <h2 className="font-script text-shimmer mt-1 text-5xl">
           Seven-Star Quest
         </h2>
         <p className="mx-auto mt-2 max-w-xl text-sm text-purple-200/85">
@@ -132,7 +132,7 @@ export function SevenStarQuest() {
         </p>
       </div>
 
-      <div className="overflow-hidden rounded-3xl border border-purple-300/25 bg-[#150630]/85 p-4 shadow-[0_20px_60px_rgba(6,2,18,0.7)] backdrop-blur-md">
+      <div className="glass-card gradient-border overflow-hidden rounded-3xl p-4">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2 px-1">
           <span className="inline-flex items-center gap-2 rounded-full border border-fuchsia-300/35 bg-purple-900/60 px-3.5 py-1 text-xs font-bold text-white">
             <Sparkles className="h-3.5 w-3.5 text-fuchsia-300" /> Stars Collected: {caught} / 7

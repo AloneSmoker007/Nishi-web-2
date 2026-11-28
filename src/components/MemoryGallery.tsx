@@ -38,13 +38,13 @@ export function MemoryGallery() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6 }}
-        className="rounded-3xl border border-purple-300/25 bg-gradient-to-br from-[#230c4c]/88 via-[#170736]/92 to-[#110428]/95 p-6 shadow-[0_20px_60px_rgba(6,2,18,0.65)] backdrop-blur-md sm:p-8"
+        className="glass-card gradient-border rounded-3xl p-6 sm:p-8"
       >
         <div className="mb-5 text-center">
           <p className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-fuchsia-300">
             <Images className="h-3.5 w-3.5" /> Our Little Moments
           </p>
-          <h2 className="font-script mt-1 text-5xl text-white drop-shadow-[0_0_16px_rgba(216,130,255,0.8)]">
+          <h2 className="font-script text-shimmer mt-1 text-5xl">
             Memory Gallery
           </h2>
           <p className="mx-auto mt-1 max-w-xl text-sm text-purple-200/85">
